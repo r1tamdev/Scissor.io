@@ -25,36 +25,35 @@
 
 ---
 
+
 ## 📁 Project Structure
 
-URL-SHORTENER/
-├── backend/
-│   ├── models/
-│   │   └── url.js              # Mongoose schema for URL documents
-│   ├── routes/
-│   │   └── url.js              # Express route handlers (shorten, redirect)
-│   ├── node_modules/
-│   ├── .env                    # Environment variables (PORT, MONGO_URI, BASE_URL)
-│   ├── package.json
-│   ├── package-lock.json
-│   └── server.js               # Express app entry point
-│
-└── frontend/
-    ├── node_modules/
-    ├── public/
-    ├── src/
-    │   ├── components/
-    │   │   ├── Features.jsx    # Features section component
-    │   │   ├── Hero.jsx        # Hero section with URL input
-    │   │   ├── Navbar.jsx      # Top navigation bar
-    │   │   ├── ResultCard.jsx  # Displays shortened URL + QR code
-    │   │   └── Stats.jsx       # Stats/metrics display component
-    │   ├── App.jsx             # Root component, routing setup
-    │   ├── index.css           # Global styles / Tailwind directives
-    │   └── main.jsx            # React DOM entry point
-    ├── .env                    # Frontend env variables (VITE_API_URL)
-    ├── .gitignore
-    ├── eslint.config.js
-    ├── index.html              # Vite HTML template
-    ├── package.json
-    └── package-lock.json
+**Backend**
+
+1. `backend/`
+   a. `models/`
+      i. `url.js` — Mongoose schema for URL documents
+   b. `routes/`
+      i. `url.js` — Express route handlers (shorten, redirect)
+   c. `.env` — Environment variables (PORT, MONGO_URI, BASE_URL)
+   d. `package.json`
+   e. `server.js` — Express app entry point
+
+**Frontend**
+
+2. `frontend/`
+   a. `public/`
+   b. `src/`
+      i. `components/`
+         1. `Navbar.jsx` — Top navigation bar
+         2. `Hero.jsx` — Hero section with URL input
+         3. `Features.jsx` — Features section component
+         4. `ResultCard.jsx` — Shortened URL + QR code display
+         5. `Stats.jsx` — Stats/metrics display component
+      ii. `App.jsx` — Root component & routing setup
+      iii. `index.css` — Global styles & Tailwind directives
+      iv. `main.jsx` — React DOM entry point
+   c. `.env` — Frontend env vars (VITE_API_URL)
+   d. `index.html` — Vite HTML template
+   e. `package.json`
+
