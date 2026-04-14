@@ -2,6 +2,15 @@
 
 > Transform long, unwieldy URLs into clean, shareable links in seconds. Generate QR codes and take control of your links.
 
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
+![MIT License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
+
 ---
 
 ## 🚀 Features
@@ -24,6 +33,13 @@
 | QR Code    | `qrcode` / `react-qr-code` |
 
 ---
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v18+
+- [MongoDB Atlas](https://www.mongodb.com/cloud/atlas) account (or local MongoDB)
+- Git
+
 
 
 ## 📁 Project Structure
