@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+
 const CopyIcon = () => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
@@ -29,8 +31,39 @@ const ShareIcon = () => (
   </svg>
 );
 
-export default function ResultCard({ shortUrl, copied, onCopy, qrImage }) {
+const ChartIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="18" y1="20" x2="18" y2="10" />
+    <line x1="12" y1="20" x2="12" y2="4" />
+    <line x1="6" y1="20" x2="6" y2="14" />
+  </svg>
+);
+
+function formatTimeLeft(expiresAt) {
+  if (!expiresAt) return null;
+  const diff = new Date(expiresAt) - new Date();
+  if (diff <= 0) return 'Expired';
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+  if (days > 0) return `${days}d ${hours}h`;
+  if (hours > 0) return `${hours}h ${mins}m`;
+  return `${mins}m`;
+}
+
+export default function ResultCard({ shortUrl, shortId, copied, onCopy, qrImage, expiresAt, hasPassword, onAnalyticsToggle, analyticsOpen }) {
   if (!shortUrl) return null;
+
+  const [timeLeft, setTimeLeft] = useState(formatTimeLeft(expiresAt));
+
+  // Live countdown
+  useEffect(() => {
+    if (!expiresAt) return;
+    const interval = setInterval(() => {
+      setTimeLeft(formatTimeLeft(expiresAt));
+    }, 60000); // update every minute
+    return () => clearInterval(interval);
+  }, [expiresAt]);
 
   const handleShare = async () => {
     try {
@@ -65,7 +98,19 @@ export default function ResultCard({ shortUrl, copied, onCopy, qrImage }) {
 
   return (
     <div className="result-card" id="result-card">
-      <div className="result-label">Your shortened link</div>
+      <div className="result-header-row">
+        <div className="result-label">Your shortened link</div>
+        <div className="result-badges">
+          {timeLeft && (
+            <span className={`result-badge expiry-badge ${timeLeft === 'Expired' ? 'expired' : ''}`}>
+              ⏱ {timeLeft === 'Expired' ? 'Expired' : `Expires in ${timeLeft}`}
+            </span>
+          )}
+          {hasPassword && (
+            <span className="result-badge lock-badge">🔒 Protected</span>
+          )}
+        </div>
+      </div>
 
       <div className="result-url-row">
         <a
@@ -83,6 +128,18 @@ export default function ResultCard({ shortUrl, copied, onCopy, qrImage }) {
           onClick={onCopy}
         >
           {copied ? <><CheckIcon /> Copied!</> : <><CopyIcon /> Copy</>}
+        </button>
+      </div>
+
+      {/* Action buttons row */}
+      <div className="result-actions-row">
+        <button
+          className={`result-action-btn ${analyticsOpen ? 'active' : ''}`}
+          onClick={onAnalyticsToggle}
+          id="analytics-btn"
+        >
+          <ChartIcon />
+          Analytics
         </button>
       </div>
 

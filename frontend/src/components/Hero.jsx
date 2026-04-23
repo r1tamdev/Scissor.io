@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import AdvancedOptions from './AdvancedOptions';
 
 const LinkInputIcon = () => (
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -14,7 +15,7 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export default function Hero({ url, setUrl, onShorten, loading }) {
+export default function Hero({ url, setUrl, onShorten, loading, expiresIn, setExpiresIn, password, setPassword }) {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter' && url.trim()) {
       onShorten();
@@ -26,7 +27,7 @@ export default function Hero({ url, setUrl, onShorten, loading }) {
       {/* Badge */}
       <div className="hero-badge">
         <div className="badge-dot" />
-        <span>New</span> — Now with QR code generation
+        <span>New</span> — Expiry, Passwords & Analytics
       </div>
 
       {/* Headline */}
@@ -38,7 +39,7 @@ export default function Hero({ url, setUrl, onShorten, loading }) {
       {/* Subtitle */}
       <p className="hero-subtitle">
         Transform long, unwieldy URLs into clean, shareable links in seconds.
-        Generate QR codes and take control of your links.
+        Set expiry, add passwords, and track analytics.
       </p>
 
       {/* URL Input */}
@@ -71,6 +72,14 @@ export default function Hero({ url, setUrl, onShorten, loading }) {
             )}
           </button>
         </div>
+
+        {/* Advanced Options */}
+        <AdvancedOptions
+          expiresIn={expiresIn}
+          setExpiresIn={setExpiresIn}
+          password={password}
+          setPassword={setPassword}
+        />
       </div>
     </section>
   );
