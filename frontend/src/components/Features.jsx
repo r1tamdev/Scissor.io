@@ -52,7 +52,7 @@ const features = [
   {
     icon: <ClockIcon />,
     title: 'Link Expiry',
-    description: 'Set your links to auto-expire after 1 hour, 24 hours, 7 days, or 30 days. Perfect for temporary shares.',
+    description: 'Control exactly when your links die — choose a preset or set a custom duration down to the second.',
   },
   {
     icon: <LockIcon />,
